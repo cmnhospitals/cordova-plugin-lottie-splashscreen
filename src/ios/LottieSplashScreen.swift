@@ -48,9 +48,9 @@ import Lottie
 
     @objc private func destroyView(_: UITapGestureRecognizer? = nil) {
         if visible {
-            let fadeOutDuation = Double(commandDelegate?.settings["LottieFadeOutDuration".lowercased()] as? String ?? "0")!
-            if fadeOutDuation > 0 {
-                UIView.animate(withDuration: fadeOutDuation, animations: {
+            let fadeOutDuration = Double(commandDelegate?.settings["LottieFadeOutDuration".lowercased()] as? String ?? "0")! / 1000
+            if fadeOutDuration > 0 {
+                UIView.animate(withDuration: fadeOutDuration, animations: {
                     self.animationView?.alpha = 0.0
                 }, completion: { _ in
                     self.removeView()
@@ -96,7 +96,7 @@ import Lottie
                 animationViewContainer?.addGestureRecognizer(gesture)
             }
 
-            let hideTimeout = Double(commandDelegate?.settings["LottieHideTimeout".lowercased()] as? String ?? "0")!
+            let hideTimeout = Double(commandDelegate?.settings["LottieHideTimeout".lowercased()] as? String ?? "0")! / 1000
             if hideTimeout > 0 {
                 delayWithSeconds(hideTimeout) {
                     self.destroyView()
