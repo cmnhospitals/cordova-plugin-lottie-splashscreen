@@ -121,7 +121,7 @@ import Lottie
         let backgroundColor = getUIModeDependentPreference(basePreferenceName: "LottieBackgroundColor", defaultValue: "#ffffff")
 
         animationViewContainer?.autoresizingMask = [
-            .flexibleWidth, .flexibleHeight, .flexibleTopMargin, .flexibleLeftMargin, .flexibleBottomMargin, .flexibleRightMargin
+            .flexibleWidth, .flexibleHeight,
         ]
         animationViewContainer?.backgroundColor = UIColor(hex: backgroundColor)
     }
@@ -169,14 +169,9 @@ import Lottie
 
         let useFullScreen = (commandDelegate?.settings["LottieFullScreen".lowercased()] as? NSString ?? "false").boolValue
         if useFullScreen {
-            var autoresizingMask: UIView.AutoresizingMask = [
+            let autoresizingMask: UIView.AutoresizingMask = [
                 .flexibleTopMargin, .flexibleLeftMargin, .flexibleBottomMargin, .flexibleRightMargin
             ]
-
-            let portrait =
-                UIApplication.shared.statusBarOrientation == UIInterfaceOrientation.portrait ||
-                UIApplication.shared.statusBarOrientation == UIInterfaceOrientation.portraitUpsideDown
-            autoresizingMask.insert(portrait ? .flexibleWidth : .flexibleHeight)
 
             animationView?.autoresizingMask = autoresizingMask
             animationWidth = fullScreenzSize.width
